@@ -1,0 +1,65 @@
+﻿@page
+@model SimpleBlog.Pages.AdminPanelModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@section Styles {
+    <link rel="stylesheet" href="css/adminpanel.css">
+}
+
+<section class="admin-section">
+    <h2>Создать новый пост</h2>
+    <form method="post">
+        <label>Заголовок:</label>
+        <input  name="title" required>
+
+        <label>Содержание:</label>
+        <textarea  name="text" asp-for="Post.Text" required> </textarea>
+
+        <button type="submit">Опубликовать</button>
+    </form>
+</section>
+<section class="admin-section">
+    <h2>Управление пользователями</h2>
+
+    <form class="search-form" onsubmit="searchUser(event)">
+        <label for="search">Поиск пользователя:</label>
+        <input type="text" id="search" name="search" placeholder="Введите имя или email">
+        <button type="submit">Найти</button>
+    </form>
+
+    <table id="user-table">
+        <thead>
+            <tr>
+                <th>Имя пользователя</th>
+                <th>Роль</th>
+                <th>Действие</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td>@user.Nickname</td>
+                    <td>@user.Role.Name</td>
+                    <td>
+                        <form method="post">
+                            <button type="submit" asp-page-handler="delete" asp-route-id="@user.Id">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+
+            @* <tr>
+                <td>ivan123</td>
+                <td>ivan@example.com</td>
+                <td><button class="delete-btn">Удалить</button></td>
+            </tr>
+            <tr>
+                <td>olga_blog</td>
+                <td>olga@example.com</td>
+                <td><button class="delete-btn">Удалить</button></td>
+            </tr> *@
+            <!-- Другие пользователи -->
+        </tbody>
+    </table>
+</section>

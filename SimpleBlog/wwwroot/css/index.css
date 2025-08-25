@@ -1,0 +1,65 @@
+﻿main {
+    background-color: #ffffff; /* Белый фон для выделения контента */
+    border: 1px solid #ddd; /* Легкая граница для отделения */
+    border-radius: 8px; /* Скругленные углы */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень для объема */
+    padding: 2rem;
+    max-width: 800px; /* Ограничение ширины для удобного чтения */
+    margin: 2rem auto; /* Центрирование и отступы сверху и снизу */
+}
+
+main h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+main p {
+    line-height: 1.6;
+    color: #555;
+}
+
+main a {
+    color: #007bff;
+    text-decoration: none;
+    border-bottom: 1px dashed #007bff;
+}
+
+main a:hover {
+    color: #0056b3;
+    border-bottom: 1px solid #0056b3;
+}
+
+.post-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-card h3 {
+    margin: 0 0 1rem;
+    font-size: 1.25rem;
+    color: #333;
+}
+
+.post-card p {
+    margin: 0 0 1rem;
+    color: #666;
+}
+
+.post-card .read-more {
+    color: black; /* Изменение цвета текста на черный */
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px solid #ddd; /* Добавление границы */
+    padding: 0.5rem; /* Отступы внутри ссылки */
+    border-radius: 4px; /* Скругленные углы */
+}
+
+.post-card .read-more:hover {
+    color: #333; /* Темный оттенок при наведении */
+    border-color: #333; /* Изменение цвета границы при наведении */
+}
+

@@ -1,0 +1,49 @@
+﻿@{
+    var identity = User.Identity.IsAuthenticated;
+}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой Блог</title>
+    <link rel="stylesheet" href="css/site.css">
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <header>
+        <h1>SimpleBlog</h1>
+        <div>
+            @if (identity)
+        {
+            <h3>Welcome, @User.Identity.Name!</h3>
+            <a href="/logout" class="auth-button">Выход</a>
+        }
+        else
+        {
+            <a href="/Auth" class="auth-button">Авторизация</a>
+        }
+        </div>
+    </header>
+        <nav>
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="#">Обо мне</a></li>
+                <li><a href="#">Контакты</a></li>
+            @if (identity && User.IsInRole("admin"))
+            {
+                <li><a href="/adminpanel">Админ панель</a></li>
+            }
+            </ul>
+        </nav>
+    
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer style="margin-top: auto">
+        <p>&copy; 2025 Мой Блог. Все права защищены.</p>
+    </footer>
+</body>
+</html>

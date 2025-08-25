@@ -1,0 +1,21 @@
+﻿@page
+@model SimpleBlog.Pages.AuthModel
+
+@section Styles {
+    <link rel="stylesheet" href="css/auth.css">
+}
+
+<section class="auth-form">
+    <h2>Авторизация</h2>
+    <form method="post">
+        <label >Имя пользователя:</label>
+        <input type="text" name="nickname" required>
+
+        <label >Пароль:</label>
+        <input type="password" name="password" required>
+
+        <button type="submit">Войти</button>
+    </form>
+    <p>Нет аккаунта? <a href="/Reg">Зарегистрируйтесь</a></p>
+</section>
+

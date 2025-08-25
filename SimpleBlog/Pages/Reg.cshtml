@@ -1,0 +1,42 @@
+﻿@page
+@model SimpleBlog.Pages.RegModel
+@{
+}
+
+@section Styles {
+    <link rel="stylesheet" href="css/auth.css">
+}
+
+@if (TempData["Message"] != null)
+{
+    <div style="linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+        border-left: 4px solid #e53e3e;
+        border-radius: 6px;
+        padding: 16px 20px;
+        margin: 15px 0;
+        color: #2d3748;
+        box-shadow: 0 2px 10px rgba(229, 62, 62, 0.1);
+        backdrop-filter: blur(10px);" role="alert">
+        @TempData["Message"]
+    </div>
+}
+
+<section class="auth-form">
+    <h2>Создать аккаунт</h2>
+    <form method="post">
+        <label>Имя пользователя:</label>
+        <input type="text"  name="nickname" required>
+
+       @*  <label for="email">Электронная почта:</label>
+        <input type="email" id="email" name="email" required> *@
+
+        <label>Пароль:</label>
+        <input type="password" name="password" required>
+
+        <label>Подтвердите пароль:</label>
+        <input type="password" name="confirm_password" required>
+
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+    <p>Уже есть аккаунт? <a href="/Auth">Войти</a></p>
+</section>

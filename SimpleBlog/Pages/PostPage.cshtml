@@ -1,0 +1,70 @@
+﻿@page 
+@model SimpleBlog.Pages.PostPageModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+}
+@{
+    var identity = User.Identity.IsAuthenticated;
+}
+@section Styles{
+    <link rel="stylesheet" href="css/postpage.css">
+}
+
+<!-- 📝 Секция поста -->
+<article class="blog-post">
+    <h2>@Model.Post.Title</h2>
+    <p class="post-meta">Опубликовано: @Model.Post.Date</p>
+    <div class="post-content">
+        <p>@Model.Post.Text</p>
+@*         <p>Можно использовать <strong>жирный</strong> или <em>курсив</em> для выделения мыслей, а также вставлять цитаты или списки.</p> *@
+    </div>
+</article>
+
+<!-- 💬 Секция комментариев -->
+<section class="comments">
+    <h3>Комментарии</h3>
+    <!-- Форма добавления комментария -->
+    @if (identity)
+    {
+        <p>Вы вошли как: <strong>@Model.User.Identity.Name</strong></p>
+        <form class="comment-form" method="post">
+            <label>Оставить комментарий:</label>
+            <textarea type="text" name="text" asp-for="NewComment.Text" required> </textarea>
+            <button type="submit">Отправить</button>
+        </form>
+    }
+    else
+    {
+        <p>Чтобы оставить комментарий, <a href="/login">войдите в систему</a>.</p>
+    }
+
+
+        <!-- Существующие комментарии -->
+    @foreach(var comment in Model.Post.Comments)
+    {
+        <div class="comment">
+            <div style="display: flex;
+                        justify-content: space-between;">
+                <p class="comment-author"><strong>@comment.User.Nickname:</strong></p>
+            @if (identity && User.IsInRole("admin"))
+            {
+                <form method="post">
+                    <button type="submit" asp-page-handler="delete"  asp-route-id="@comment.Id">Delete</button>
+                </form>
+            }
+            </div>
+            <p>@comment.Text</p>
+        </div>
+    }
+@*     <div class="comment">
+        <p class="comment-author"><strong>Olga:</strong></p>
+        <p>Отличная статья, спасибо за советы!</p>
+    </div>
+
+    <div class="comment">
+        <p class="comment-author"><strong>Sergey:</strong></p>
+        <p>Согласен с вашим мнением, особенно по поводу планирования.</p>
+    </div> *@
+
+   
+</section>
